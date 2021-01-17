@@ -45,4 +45,31 @@ def f(filename, debug=False):
     log(debug, f'file on {filename}')
     gdb.execute(f'file {filename}')
 
+"""
+return entry point of binary `filename`
+"""
+def getEntry(filename, debug=False):
+    log(debug, f'getting {filename} entry point')
+    cmd_readelf = Popen(('readelf', '-h'),
+                    stdout=PIPE)
+    cmd_grep = Popen(('grep', 'Entry point'),
+                    stdin=cmd_readelf.stdout,
+                    stdout=PIPE)
+    cmd_tr = Popen(('tr', '-s', ' '),
+                    stdin=cmd_grep.stdout,
+                    stdout=PIPE)
+    cmd_cut = Popen(('cut', '-d', ' ', '-f', '5'),
+                    stdin=cmd_tr.stdout)
+    entry = cmd_cut.stdout
+    log(debug, f'{filename} entry point = {entry}')
+    return entry
 
+"""
+make `filename` the currently debugged file and break at its entry point
+if `entry` is provided then it breaks at `entry` instead
+"""
+def init(filename, entry=None, debug=False):
+    if entry == None:
+        entry = getEntry(filename, debug)
+    f(filename, debug)
+    ba(entry, c=False, debug)
