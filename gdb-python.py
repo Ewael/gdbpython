@@ -10,4 +10,11 @@ def log(debug=False, msg):
     if debug:
         print(f'[*] {msg}')
 
+"""
+continue
+"""
+def cont(debug=False):
+    log(debug, 'continue')
+    output = gdb.execute('c', to_string)
+    return output
 
