@@ -73,3 +73,18 @@ def init(filename, entry=None, debug=False):
         entry = getEntry(filename, debug)
     f(filename, debug)
     ba(entry, c=False, debug)
+
+"""
+run with `stdin` or `args`
+"""
+def run(stdin=None, stdin_cmd=None, args=[], debug=False):
+    if stdin:
+        log(debug, f'running with `r < {stdin}`')
+        gdb.execute(f'r < {stdin}')
+    elif stdin_cmd:
+        log(debug, f'running with `r < <({stdin_cmd})`')
+        gdb.execute(f'r < <({stdin_cmd})')
+    elif args:
+        strargs = ' '.join(args)
+        log(debug, f'running with `r {strargs}`')
+        gdb.execute(f'r {strargs}')
