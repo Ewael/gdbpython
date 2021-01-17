@@ -28,3 +28,14 @@ def bs(symbol, c=False, debug=False):
     if c:
         return cont(debug)
 
+"""
+break at `addr` and continue if `c` is True
+if `c` is True then return output
+"""
+def ba(addr, c=False, debug=False):
+    log(debug, f'breaking at address {addr}')
+    gdb.execute(f'b *{addr}')
+    if c:
+        return cont(debug)
+
+
