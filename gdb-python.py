@@ -18,3 +18,13 @@ def cont(debug=False):
     output = gdb.execute('c', to_string)
     return output
 
+"""
+break on `symbol` and continue if `c` is True
+if `c` is True then return output
+"""
+def bs(symbol, c=False, debug=False):
+    log(debug, f'breaking on symbol {symbol}')
+    gdb.execute(f'b {symbol}')
+    if c:
+        return cont(debug)
+
