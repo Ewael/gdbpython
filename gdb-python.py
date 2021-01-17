@@ -38,4 +38,11 @@ def ba(addr, c=False, debug=False):
     if c:
         return cont(debug)
 
+"""
+file `filename`
+"""
+def f(filename, debug=False):
+    log(debug, f'file on {filename}')
+    gdb.execute(f'file {filename}')
+
 
