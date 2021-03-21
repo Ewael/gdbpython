@@ -52,3 +52,5 @@ gdb -q -x script.py
 * *typing* (see [doc](https://docs.python.org/3/library/typing.html))
 * cleaner code + clearer doc
 * better functions names
+* temporary breakpoints
+* context command to use it after exec
