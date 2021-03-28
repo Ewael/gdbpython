@@ -54,3 +54,84 @@ gdb -q -x script.py
 * better functions names
 * temporary breakpoints
 * context command to use it after exec
+
+## Documentation (WIP)
+
+---
+```python
+def exc(cmd, debug=False)
+```
+Execute given `cmd` and return output.
+
+---
+```python
+def context()
+```
+Return colored `context`. Useful after execution because the output is not printed after commands. Should be called this way:
+```python
+print(context())
+```
+
+---
+```python
+def cont()
+```
+Continue execution and return output.
+
+
+#### Breakpoints
+
+---
+```python
+def bs(symbol)
+```
+Break on symbol `symbol`.
+```python
+bs('main')
+bs('myfunction+305')
+```
+
+---
+```python
+def ba(addr)
+```
+Break at address `addr`.
+```python
+ba(0xdeadbeef)
+```
+
+---
+```python
+def f(filename)
+```
+Define `filename` as the debugged file.
+
+---
+```python
+def getRandomString(size)
+```
+Return random string of `size` chars.
+
+---
+```python
+def getEntry(filename, debug=False)
+```
+Return entry point of binary `filename`.
+
+---
+```python
+def init(filename, entry=None)
+```
+Define the file `filename` as the currently debugged file and break at its entry point. If `entry` is provided the it breaks at `entry` address instead.
+
+---
+```python
+def run(stdin=None, stdin_cmd=None, args=[])
+```
+Run with `stdin` **OR** `args`.
+
+---
+```python
+def get(symbol)
+```
+Return given symbol.
