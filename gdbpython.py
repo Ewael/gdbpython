@@ -14,16 +14,16 @@ def context():
     return exc('context')
 
 def cont():
-    return exc('c', debug)
+    return exc('c')
 
 def bs(symbol):
-    exc(f'b {symbol}', debug)
+    exc(f'b {symbol}')
 
 def ba(addr):
-    exc(f'b *{addr}', debug)
+    exc(f'b *{addr}')
 
-def f(filename, debug=False):
-    exc(f'file {filename}', debug)
+def f(filename=False):
+    exc(f'file {filename}')
 
 def getRandomString(size):
     charset = string.ascii_letters + string.digits
@@ -39,22 +39,24 @@ def getEntry(filename):
     return entry
 
 def init(filename, entry=None):
-    f(filename, debug)
+    f(filename)
     if not entry:
-        entry = getEntry(filename, debug)
-    ba(entry, False, debug)
+        entry = getEntry(filename)
+    ba(entry)
 
-def run(stdin=None, stdin_cmd=None, args=[], debug=False):
+def run(stdin=None, stdin_cmd=None, args=[]):
     if stdin:
-        exc(f'r < {stdin}', debug)
+        exc(f'r < {stdin}')
     elif stdin_cmd:
-        exc(f'r < <({stdin_cmd})', debug)
+        exc(f'r < <({stdin_cmd})')
     elif args:
         strargs = ' '.join(args)
-        exc(f'r {strargs}', debug)
+        exc(f'r {strargs}')
+    else:
+        exc('r')
 
-def get(symbol, debug=False):
-    return exc(f'p ${symbol}', debug)
+def get(symbol=False):
+    return exc(f'p ${symbol}')
 
 def tb(addr):
     exc(f'tb *{addr}')
