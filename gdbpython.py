@@ -44,9 +44,11 @@ def init(filename, entry=None):
         entry = getEntry(filename)
     ba(entry)
 
-def run(stdin=None, stdin_cmd=None, args=[]):
+def run(stdin=None, stdin_file=None, stdin_cmd=None, args=[]):
     if stdin:
-        exc(f'r < {stdin}')
+        exc(f'r < <(python3 -c "print(\'{stdin}\')")')
+    elif stdin_file:
+        exc(f'r < {stdin_file}')
     elif stdin_cmd:
         exc(f'r < <({stdin_cmd})')
     elif args:

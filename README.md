@@ -49,6 +49,7 @@ gdb -q -x script.py
 
 ## TODO
 
+* **IMPORTANT**: redo doc entirely
 * *typing* (see [doc](https://docs.python.org/3/library/typing.html))
 * cleaner code + clearer doc
 * better functions names
