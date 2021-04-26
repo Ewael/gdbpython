@@ -22,6 +22,9 @@ def bs(symbol):
 def ba(addr):
     exc(f'b *{addr}')
 
+def hba(addr):
+    exc(f'hb *{addr}')
+
 def f(filename=False):
     exc(f'file {filename}')
 
@@ -45,7 +48,10 @@ def init(filename, entry=None):
     ba(entry)
 
 def run(stdin=None, stdin_file=None, stdin_cmd=None, args=[]):
-    if stdin:
+    if stdin and args:
+        strargs = ' '.join(args)
+        exc(f'r {strargs} < <(python3 -c "print(\'{stdin}\')")')
+    elif stdin:
         exc(f'r < <(python3 -c "print(\'{stdin}\')")')
     elif stdin_file:
         exc(f'r < {stdin_file}')
@@ -66,3 +72,9 @@ def tb(addr):
 def tbc(addr):
     tb(addr)
     cont()
+
+def getCharset():
+    return string.ascii_letters + string.digits + "@*{}+=$%^][() _-.?!"
+
+def setFork(mode):
+    exc(f'set follow-fork-mode {mode}')
