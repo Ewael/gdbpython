@@ -39,3 +39,16 @@ temporary breakpoint at given address and continue
 def tbc(addr: int) -> None:
     tb(addr)
     cont()
+
+'''
+pie breakpoint at given offset from base address
+'''
+def pba(offset: int) -> None:
+    exc(f'pie breakpoint *{hex(offset)}')
+
+'''
+pie breakpoint at given offset from base address and continue
+'''
+def pbc(offset: int) -> None:
+    pba(offset)
+    cont()
