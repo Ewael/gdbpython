@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from breakpoints import *
-from main import *
-from start import *
-from utils import *
+from gdb_breakpoints import *
+from gdb_main import *
+from gdb_start import *
+from gdb_utils import *

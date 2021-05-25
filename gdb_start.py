@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-from main import *
-from utils import *
-from breakpoints import *
+from gdb_main import *
+from gdb_utils import *
+from gdb_breakpoints import *
 
 import os
 import tempfile

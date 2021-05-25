@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from main import *
+from gdb_main import *
 
 '''
 continue and return context
