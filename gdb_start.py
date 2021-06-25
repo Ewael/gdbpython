@@ -40,15 +40,31 @@ def run(stdin: str=None,
 
     if stdin and args:
         strargs = ' '.join(args)
-        exc(f'r {strargs} < <(python3 -c "print(\'{stdin}\')")')
+        exc(f'run {strargs} < <(python3 -c "print(\'{stdin}\')")')
     elif stdin:
-        exc(f'r < <(python3 -c "print(\'{stdin}\')")')
+        exc(f'run < <(python3 -c "print(\'{stdin}\')")')
     elif stdin_file:
-        exc(f'r < {stdin_file}')
+        exc(f'run < {stdin_file}')
     elif stdin_cmd:
-        exc(f'r < <({stdin_cmd})')
+        exc(f'run < <({stdin_cmd})')
     elif args:
         strargs = ' '.join(args)
-        exc(f'r {strargs}')
+        exc(f'run {strargs}')
     else:
-        exc('r')
+        exc('run')
+
+'''
+remote debugging, very useful with qemu for kernel / weird archs debugging:
+- `qemu-system-i386 -s -S -kernel ./binary -monitor stdio`
+- `qemu-arm -L /usr/arm-linux-gnueabihf -g 1234 ./binary`
+'''
+def remote(binary: str=None, host: str='localhost', port: int=1234):
+    if binary: # if binary name is provided then give it to gdb
+        f(filename)
+    exc(f'target remote {host}:{port}')
+
+'''
+attach to running process
+'''
+def attach(pid: int):
+    exc(f'attach {pid}')
